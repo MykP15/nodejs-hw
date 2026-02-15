@@ -29,13 +29,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello' });
+app.get('/notes', (req, res) => {
+  res.status(200).json({ message: 'Retrieved all notes' });
 });
 
-app.post('/users', (req, res) => {
-  console.log(req.body);
-  res.status(201).json({ message: 'User created' });
+app.get('/notes/:noteId', (req, res) => {
+  const id = req.params.noteId;
+  res.status(200).json({ message: `Retrieved note with ID: ${id}` });
+});
+
+app.get('/test-error', (req, res) => {
+  throw new Error(`Simulated server error`);
 });
 
 app.use((req, res) => {
@@ -45,8 +49,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(500).json({
-    message: 'Internal Server Error',
-    error: err.message,
+    message: err.message,
   });
 });
 
