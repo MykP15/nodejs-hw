@@ -12,5 +12,6 @@ export async function connectMongoDB() {
     console.log("✅ MongoDB connection established successfully");
   } catch (error) {
     console.error('Failed to connect to db', error);
+    process.exit(1);
   }
 }
