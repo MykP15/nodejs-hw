@@ -1,6 +1,6 @@
 
 import mongoose from 'mongoose';
-const uri = `mongodb+srv://MykP15:29011982papa@${process.env.MONGO_URL}/notes?appName=Cluster0`;
+const uri = `${process.env.MONGO_URL}`;
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
