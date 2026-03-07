@@ -2,8 +2,8 @@ import {model, Schema } from "mongoose";
 
 
 const noteSchema = new Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
+  title: { type: String, required: true, trim: true, },
+  content: { type: String, required: false, default: "", trim: true, },
   tag: {
     type: String,
     enum: [
@@ -26,6 +26,6 @@ const noteSchema = new Schema({
     timestamps: true,
    });
 
-const Note = model('notes', noteSchema);
+const Note = model('Note', noteSchema);
 
 export default Note;
