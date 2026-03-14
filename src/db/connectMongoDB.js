@@ -1,6 +1,6 @@
 
 import mongoose from 'mongoose';
-import Note from '../models/note.js';
+import { Note } from '../models/note.js';
 const uri = `${process.env.MONGO_URL}`;
 
 const clientOptions = { serverApi: { version: '1', strict: false, deprecationErrors: true } };
