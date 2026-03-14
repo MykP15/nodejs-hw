@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { errors } from "celebrate";
 import { errorHandler } from './middleware/errorHandler.js';
 import 'dotenv/config';
 import notesRoutes from './routes/notesRoutes.js';
@@ -23,7 +24,7 @@ app.get('/test-error', (req, res) => {
 });
 
 app.use(notFoundHandler);
-
+app.use(errors());
 app.use(errorHandler);
 
 

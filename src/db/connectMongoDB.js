@@ -1,8 +1,9 @@
 
 import mongoose from 'mongoose';
+import Note from '../models/note.js';
 const uri = `${process.env.MONGO_URL}`;
 
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+const clientOptions = { serverApi: { version: '1', strict: false, deprecationErrors: true } };
 
 export async function connectMongoDB() {
   try {
@@ -10,8 +11,13 @@ export async function connectMongoDB() {
     await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("✅ MongoDB connection established successfully");
+
+    await Note.syncIndexes();
+    console.log("Indexes synced successfully");
   } catch (error) {
     console.error('Failed to connect to db', error);
     process.exit(1);
   }
+
+
 }
