@@ -5,6 +5,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import 'dotenv/config';
 import notesRoutes from './routes/notesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(logger);
 
 app.use(authRoutes);
+app.use('/users', userRoutes);
 app.use(notesRoutes);
 
 app.get('/test-error', (req, res) => {
