@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(logger);
 
 app.use(authRoutes);
-app.use('/users', userRoutes);
+app.use(userRoutes);
 app.use(notesRoutes);
 
 app.get('/test-error', (req, res) => {
